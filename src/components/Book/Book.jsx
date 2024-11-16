@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Book = ({ book }) => {
   const { image, bookName, author, tags, category, bookId } = book;
   return (
@@ -8,8 +10,11 @@ const Book = ({ book }) => {
         </figure>
         <div className="card-body">
           <div className="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <div className="badge badge-outline bg-green-100 text-green-600 font-semibold p-3">
+            {tags.map((tag, index) => (
+              <div
+                key={index}
+                className="badge badge-outline bg-green-100 text-green-600 font-semibold p-3"
+              >
                 {tag}
               </div>
             ))}
