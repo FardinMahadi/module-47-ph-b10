@@ -7,6 +7,7 @@ import Book from "../Book/Book";
 
 const ListedBooks = () => {
   const [readList, setReadList] = useState([]);
+  const [sort, setSort] = useState("");
   const allBooks = useLoaderData();
   // ideally we will directly get the read book list from the database
 
@@ -22,9 +23,41 @@ const ListedBooks = () => {
     setReadList(readBookList);
   }, []);
 
+  const handleSort = (sortType) => {
+    setSort(sortType);
+
+    //
+    if (sortType === "No of pages") {
+      const sortedReadList = [...readList].sort(
+        (a, b) => a.totalPages - b.totalPages
+      );
+      setReadList(sortedReadList);
+    }
+    if (sortType === "Ratings") {
+      const sortedReadList = [...readList].sort((a, b) => b.rating - a.rating);
+      setReadList(sortedReadList);
+    }
+  };
+
   return (
     <div>
       <h3 className="text-3xl my-8">Listed Books</h3>
+
+      {/* dropdown */}
+      <details className="dropdown my-10">
+        <summary className="btn m-1">
+          {sort ? `Sort by: ${sort}` : "Sort By"}
+        </summary>
+        <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+          <li onClick={() => handleSort("Ratings")}>
+            <a>Ratings</a>
+          </li>
+          <li onClick={() => handleSort("No of pages")}>
+            <a>No of pages</a>
+          </li>
+        </ul>
+      </details>
+
       <Tabs>
         <TabList>
           <Tab>Read List</Tab>
@@ -33,9 +66,11 @@ const ListedBooks = () => {
 
         <TabPanel>
           <h2 className="text-2xl">Books I read: {readList.length}</h2>
-          {readList.map((book) => (
-            <Book key={book.bookId} book={book} />
-          ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-10">
+            {readList.map((book) => (
+              <Book key={book.bookId} book={book} />
+            ))}
+          </div>
         </TabPanel>
         <TabPanel>
           <h2 className="text-2xl">My wish list</h2>

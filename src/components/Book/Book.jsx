@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
 
 const Book = ({ book }) => {
-  const { image, bookName, author, tags, category, bookId } = book;
+  const {
+    image,
+    bookName,
+    author,
+    tags,
+    category,
+    bookId,
+    rating,
+    totalPages,
+  } = book;
   return (
     <Link to={`/books/${bookId}`}>
       <div className="card bg-base-300 w-96 shadow-xl p-6">
@@ -21,7 +30,7 @@ const Book = ({ book }) => {
           </div>
           <h2 className="card-title">
             {bookName}
-            <div className="badge badge-secondary">NEW</div>
+            <div className="badge badge-secondary">{totalPages}</div>
           </h2>
           <p>By: {author}</p>
           {/* divider */}
@@ -29,33 +38,36 @@ const Book = ({ book }) => {
           <div className="card-actions justify-between">
             <div className="badge badge-outline">{category}</div>
             {/* rating */}
-            <div className="rating">
-              <input
-                type="radio"
-                name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
-              />
-              <input
-                type="radio"
-                name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
-                defaultChecked
-              />
-              <input
-                type="radio"
-                name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
-              />
-              <input
-                type="radio"
-                name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
-              />
-              <input
-                type="radio"
-                name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
-              />
+            <div className="flex gap-2 ">
+              <div>{rating}</div>
+              <div className="rating">
+                <input
+                  type="radio"
+                  name="rating-2"
+                  className="mask mask-star-2 bg-orange-400"
+                />
+                <input
+                  type="radio"
+                  name="rating-2"
+                  className="mask mask-star-2 bg-orange-400"
+                  defaultChecked
+                />
+                <input
+                  type="radio"
+                  name="rating-2"
+                  className="mask mask-star-2 bg-orange-400"
+                />
+                <input
+                  type="radio"
+                  name="rating-2"
+                  className="mask mask-star-2 bg-orange-400"
+                />
+                <input
+                  type="radio"
+                  name="rating-2"
+                  className="mask mask-star-2 bg-orange-400"
+                />
+              </div>
             </div>
           </div>
         </div>
