@@ -19,6 +19,10 @@ const BookDetail = () => {
      */
     addToStoredReadList(id);
   };
+
+  const handleWishList = (id) => {
+    addToStoredWishList(id);
+  };
   return (
     <div className="my-12">
       <h2>Book details: {bookId}</h2>
@@ -30,7 +34,9 @@ const BookDetail = () => {
       >
         Mark as Read
       </button>
-      <button className="btn btn-accent">Add to WishList</button>
+      <button onClick={() => handleWishList(bookId)} className="btn btn-accent">
+        Add to WishList
+      </button>
     </div>
   );
 };

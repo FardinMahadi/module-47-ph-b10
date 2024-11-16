@@ -7,10 +7,11 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink>Listed Books</NavLink>
+        <NavLink to="/listedBooks">Listed Books</NavLink>
       </li>
     </>
   );
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
